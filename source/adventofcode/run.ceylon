@@ -15,7 +15,7 @@ import ceylon.math.whole {...}
 
 "Run the module `adventofcode`."
 shared void run() {
-    uppgift2();
+    uppgift2b();
 }
 
 String getFileContents(File? file) {
@@ -74,6 +74,24 @@ void uppgift2() {
 	});
 	if (nonempty areas) {
 		process.writeLine("The Elves need ``sum(areas)`` square inches");
+	}
+	
+}
+void uppgift2b() {
+	{String*} dimensions = getFileContents(projectFile("uppg2.input")).lines;
+	[Integer*] areas = dimensions.collect((String dimStr) {
+		Integer[] dims = dimStr.split('x'.equals).collect((s) => parseInteger(s) else 0);
+		Integer x = dims[0] else 0;
+		Integer y = dims[1] else 0;
+		Integer z = dims[2] else 0;
+		process.writeLine("x: ``x``, y: ``y``, z: ``z``");
+		value sides = [x+y, x+z, y+z].collect((x) => x*2);
+		Integer smallestSide = min(sides);
+		process.writeLine("sides: ``sides``, smallest: ``smallestSide``");
+		return smallestSide + x*y*z;
+	});
+	if (nonempty areas) {
+		process.writeLine("The Elves need ``sum(areas)`` feet of ribbon");
 	}
 	
 }
