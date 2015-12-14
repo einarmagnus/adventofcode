@@ -1,0 +1,7 @@
+
+[compiler]
+source=source
+resource=resource
+
+[defaults]
+encoding=ANSI_X3.4-1968
