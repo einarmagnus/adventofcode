@@ -11,12 +11,14 @@ import ceylon.io.buffer {
 }
 
 import ceylon.math.whole {...}
-
-
-"Run the module `adventofcode`."
-shared void run() {
-    uppgift2b();
+import ceylon.collection {
+	HashSet,
+	Stability,
+	unlinked,
+	HashMap,
+	Hashtable
 }
+
 
 String getFileContents(File? file) {
 	if (exists file) {
@@ -92,6 +94,41 @@ void uppgift2b() {
 	});
 	if (nonempty areas) {
 		process.writeLine("The Elves need ``sum(areas)`` feet of ribbon");
+	}	
+}
+
+void uppgift3() {
+	String instructions = getFileContents(projectFile("uppg3.input"));
+	value locations = HashMap<Integer[2], Integer>(unlinked, Hashtable());
+	variable value x = 0;
+	variable value y = 0;
+	locations.put([x, y], 1);
+	for (dir in instructions) {
+		switch (dir)
+		case('<'){
+			x--;
+		}
+		case('>') {
+			x++;
+		}
+		case('^') {
+			y++;
+		}
+		case('v') {
+			y--;
+		}
+		else {
+			assert (false);
+		}
+		locations.put([x, y], (locations.get([x,y]) else 0)+1);
 	}
+	process.writeLine("``locations.size`` houses were visited");
 	
+	
+	
+}
+
+"Run the module `adventofcode`."
+shared void run() {
+	uppgift3();
 }
