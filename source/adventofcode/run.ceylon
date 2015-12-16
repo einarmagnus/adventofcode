@@ -20,14 +20,14 @@ import ceylon.collection {
 }
 
 
-String getFileContents(File? file) {
+shared String getFileContents(File? file) {
 	if (exists file) {
 		return utf8.decode(newByteBufferWithData(*file.Reader("utf-8").readBytes(file.size)));		
 	}
 	throw Exception("File did not exist");
 }
 
-File? projectFile(String name){
+shared File? projectFile(String name){
 	Resource r = home.childPath("workspace/adventofcode/``name``").resource;
 	
 	if (is File r) {
