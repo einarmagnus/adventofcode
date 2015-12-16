@@ -1,27 +1,31 @@
 import adventofcode {
 	projectFile,
 	getFileContents
-}
-void uppg1() {
-	String ps = getFileContents(projectFile("uppg1-1.input"));
-	Integer result = ps.count('('.equals) - ps.count(')'.equals);
-	process.writeLine("Floor: ``result``");
 
 }
+import ceylon.collection {
+	...
+}
+import adventofcode.lib {
+	DoubleLinkedList
+}
 
-void uppgift1b() {
+shared void uppgift1() {
 	String ps = getFileContents(projectFile("uppg1-1.input"));
-	variable Integer floor = 0;
-	variable Integer pos = 0;
-	while (floor >= 0) {
-		if (exists ch = ps[pos]) {
-			if (ch == ')') {
-				floor--;
-			} else {
-				floor++;
-			}
-		}
-		pos++;
+
+	Integer upDown(Character c) => c == '(' then 1 else -1;
+	// DoubleLinkedList can be substituted with ArrayList and it works all the same,
+	// exept about 60 times faster. But it was a good exercise implementing the list :)
+	value trail = ps.fold(DoubleLinkedList<Integer>())((list, ch) {
+		list.add(upDown(ch) + (list.last else 0));
+		return list;
+	});
+	value lastFloor = trail.last;
+	if (exists lastFloor) {
+		process.writeLine("Santa ends up at floor: ``lastFloor``");
 	}
-	process.writeLine("Floor: ``pos``");	
+	value basementPos = trail.locate(Integer.negative);
+	if (exists basementPos) {
+		process.writeLine("Santa enters the basement after: ``basementPos.key + 1``");
+	}
 }
