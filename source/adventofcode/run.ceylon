@@ -12,8 +12,6 @@ import ceylon.io.buffer {
 
 import ceylon.math.whole {...}
 import ceylon.collection {
-	HashSet,
-	Stability,
 	unlinked,
 	HashMap,
 	Hashtable
@@ -21,25 +19,12 @@ import ceylon.collection {
 import adventofcode.uppg1 {
 	uppgift1
 }
-
-
-shared String getFileContents(File? file) {
-	if (exists file) {
-		return utf8.decode(newByteBufferWithData(*file.Reader("utf-8").readBytes(file.size)));		
-	}
-	throw Exception("File did not exist");
+import adventofcode.lib {
+	projectFile,
+	getFileContents
 }
 
-shared File? projectFile(String name){
-	Resource r = home.childPath("workspace/adventofcode/``name``").resource;
-	
-	if (is File r) {
-		return r;
-	} 
-	else {
-		return null;
-	}
-}
+
 
 
 void uppgift2() {

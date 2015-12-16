@@ -1,13 +1,10 @@
-import adventofcode {
-	projectFile,
-	getFileContents
-
-}
 import ceylon.collection {
 	...
 }
 import adventofcode.lib {
-	DoubleLinkedList
+	DoubleLinkedList,
+	getFileContents,
+	projectFile
 }
 
 shared void uppgift1() {
