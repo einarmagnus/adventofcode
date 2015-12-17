@@ -12,10 +12,6 @@ import adventofcode.uppg4 {
 	uppg4
 }
 
-
-
-
-
 "Run the module `adventofcode`."
 shared void run() {
 	uppg4();

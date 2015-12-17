@@ -1,14 +1,11 @@
-import ceylon.collection {
-	...
-}
+
 import adventofcode.lib {
 	DoubleLinkedList,
-	getFileContents,
-	projectFile
+	resource
 }
 
 shared void uppgift1() {
-	String ps = getFileContents(projectFile("uppg1-1.input"));
+	String ps = resource("uppg1-1.input");
 
 	Integer upDown(Character c) => c == '(' then 1 else -1;
 	// DoubleLinkedList can be substituted with ArrayList and it works all the same,

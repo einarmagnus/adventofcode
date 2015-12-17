@@ -1,6 +1,5 @@
 import adventofcode.lib {
-	getFileContents,
-	projectFile
+	resource
 }
 import ceylon.collection {
 	HashMap,
@@ -9,7 +8,7 @@ import ceylon.collection {
 }
 
 shared void uppg3() {
-	String instructions = getFileContents(projectFile("uppg3.input"));
+	String instructions = resource("uppg3.input");
 
 	class Location(x, y) {
 		shared Integer x;

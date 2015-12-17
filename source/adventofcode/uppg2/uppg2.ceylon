@@ -1,12 +1,11 @@
 import adventofcode.lib {
-	getFileContents,
-	projectFile
+	resource
 }
 import ceylon.math.integer {
 	min
 }
 shared void uppg2() {
-	{String*} dimensions = getFileContents(projectFile("uppg2.input")).lines;
+	{String*} dimensions = resource("uppg2.input").lines;
 
 	class Box(Integer w, Integer h, Integer l) {
 		Integer[2][3] sides = [[w, h], [w, l], [h, l]];
